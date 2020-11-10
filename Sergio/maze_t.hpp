@@ -39,35 +39,38 @@ using namespace AED;
 typedef matrix_t<short> matrix_t_short;
 typedef matrix_t<bool> matrix_t_bool;
 
-// enumera las direcciones Norte, Este, Sur y Oeste (West)
+/// enumera las direcciones Norte, Este, Sur y Oeste (West)
 enum direction_t {N, E, S, W};
 
-// define vectores de desplazamiento en las 4 direcciones:
-//                    N   E  S   W
+/// define vectores de desplazamiento en las 4 direcciones:
+///                   N   E  S   W
 const short i_d[] = { -1, 0, 1,  0};
 const short j_d[] = {  0, 1, 0, -1};
 
 
-class maze_t 
-{
+class maze_t {
 private:
-  // matriz que guarda los valores leídos de la entrada
+  /// matriz que guarda los valores leídos de la entrada
   matrix_t_short matrix_;
-  // matriz que guarda si una celda ha sido visitada o no
+  /// matriz que guarda la heurística
+  matrix_t_short heuristica_;
+  /// matriz que guarda si una celda ha sido visitada o no
   matrix_t_bool visited_;
-  // guarda las filas y columnas de entrada (start) y salida (end)
+  /// guarda las filas y columnas de entrada (start) y salida (end)
   int i_start_, j_start_, i_end_, j_end_, count = 0; // mod: he añadido count=0
 
 public:
-  // constructor y destructor
+  /// constructor y destructor
   maze_t(void);
   ~maze_t();
 
-  // método para resolver el laberinto y que invoca al otro método recursivo
+  /// método para resolver el laberinto y que invoca al otro método recursivo
   bool solve(void);
 
   istream& read(istream& = cin);
+  void FillHeuristica(); /// llenamos matriz heurística
   ostream& write(ostream& = cout) const;
+  float Euclidea(const int i, const int j); /// devuleve el cálculo de euclidea en la pos i, j
   
 private:
   bool is_ok_(const int, const int) const;
