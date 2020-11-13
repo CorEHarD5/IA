@@ -71,7 +71,8 @@ public:
   void FillHeuristica(); /// llenamos matriz heurística
   ostream& write(ostream& = cout) const;
   float Euclidea(const int i, const int j); /// devuleve el cálculo de euclidea en la pos i, j
-  
+  void RandomMaze(const int i_start, const int j_start, const int i_end, const int j_end, const float percentage);
+
 private:
   bool is_ok_(const int, const int) const;
   bool solve_(const int, const int);

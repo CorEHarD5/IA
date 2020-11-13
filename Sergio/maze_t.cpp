@@ -81,11 +81,21 @@ ostream& maze_t::write(ostream& os) const {
   for (int i = 1; i <= matrix_.get_m(); i++) {
     for (int j = 1; j <= matrix_.get_n(); j++) {
       switch (matrix_(i, j)) { 
-        case START_ID: os << START_CHR; break;
-        case END_ID:   os << END_CHR;   break;
-        case WALL_ID:  os << WALL_CHR;  break;
-        case PASS_ID:  os << PASS_CHR;  break;
-        case PATH_ID:  os << PATH_CHR;  break;
+        case START_ID: 
+          os << START_CHR; 
+          break;
+        case END_ID:   
+          os << END_CHR;   
+          break;
+        case WALL_ID:  
+          os << WALL_CHR;  
+          break;
+        case PASS_ID:  
+          os << PASS_CHR;  
+          break;
+        case PATH_ID:  
+          os << PATH_CHR;  
+          break;
       }
     os << endl;
     }
@@ -93,12 +103,22 @@ ostream& maze_t::write(ostream& os) const {
   return os; 
 }
 
+/// Te devuelve el cálculo de la euclídea en el caso i j
 float maze_t::Euclidea(const int i, const int j) {
   return sqrt(pow((i - i_end_), 2) + pow((j - j_end_), 2));
 }
 
-/// FASE I
-/// comprueba que la fila i y columna j son válidas antes de pasar a ellas
+/// Genera un Maze random pasándole el i j tanto del inicio como del final y
+/// el porcentaje de obstaculos requerido 
+void maze_t::RandomMaze(const int i_start, const int j_start, const int i_end, const int j_end, const float percentage) {
+  const int maze_size = (matrix_.get_n() * matrix_.get_m())
+  
+  for (int i = 0; i < ; i++) {
+    
+  }
+}
+
+/// Comprueba que la fila i y columna j son válidas antes de pasar a ellas
 bool maze_t::is_ok_(const int i, const int j) const { 
   if ((i > 1 && i <= matrix_.get_m()) && (j > 1 && j <= matrix_.get_n()) && (matrix_(i,j) != WALL_ID) && (visited_(i,j) == false)) {
 	  return true;
